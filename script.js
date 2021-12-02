@@ -17,20 +17,23 @@ beginTime();
 
 //////////////////////////
 
+var hour;
 
 var container = document.getElementById("container");
 
-// var tr = document.createElement('tr');
+var tr;
 
-// var tdTime = document.createElement('td');
+var tdTime;
 
-// var tdInput = document.createElement('td');
+var tdInput;
 
-// var tdTextArea = document.createElement("textarea");
+var tdTextArea;
 
-// var tdButtonArea = document.createElement('td');
+var tdButtonArea;
 
-// var tdButton = document.createElement("button");
+var tdButton;
+
+var savingButton;
 
 function getTime() {
 
@@ -40,14 +43,14 @@ function getTime() {
         
 
         // Row --------------------------
-        let tr = document.createElement('tr');
+        tr = document.createElement('tr');
         container.appendChild(tr);
         tr.setAttribute("data-hour", hour);
 
 
 
         // Time --------------------------
-        let tdTime = document.createElement('td');
+        tdTime = document.createElement('td');
         tr.appendChild(tdTime);
 
     
@@ -60,23 +63,32 @@ function getTime() {
 
 
         // Input --------------------------
-        let tdInput = document.createElement('td');
+        tdInput = document.createElement('td');
         tr.appendChild(tdInput);
        
 
-        let tdTextArea = document.createElement("textarea");
+        tdTextArea = document.createElement("textarea");
         tdInput.appendChild(tdTextArea);
+        //if(localStorage data exists) {
+            //textContent = time
+        //}
 
 
         // Button --------------------------
-        let tdButtonArea = document.createElement('td');
+        tdButtonArea = document.createElement('td');
         tr.appendChild(tdButtonArea);
 
-        let tdButton = document.createElement("button");
+        tdButton = document.createElement("button");
         tdButtonArea.appendChild(tdButton);
-        tdButton.textContent = "Submit"
+        tdButton.setAttribute("class", "savingButton");
+        
+        savingButton = document.querySelector(".savingButton");
+        
+        tdButton.textContent = "Submit";
 
-    }
+        pointInTime();
+
+    } 
 }
 getTime();
 
@@ -90,42 +102,71 @@ getTime();
 // More info on forEach.
 // Confirm I'll be storing tdTextArea in local storage.
 // Currently if statement only displays one option. If this, then not that. Need a styling for all three cases: Past, Present, Future. 
+// For save button, event listener for currentTarget?
 
 ///////////////////////////////////
 
 function pointInTime() {
 
 
-    // if(tr.dataset.hour == moment().hour()) {
-    //     console.log("Testing: equal");
-    //      tdInput.style.background = "black";
-    // }
-    // if( tr.dataset.hour >= moment().hour() ) {
-    //     console.log("Testing: Future");
-    //      tdInput.setAttribute("style", "background-color:red;");
-    // }
-    // else {
-    //     console.log("Testing: Past");
-    //     tdInput.setAttribute("style", "background-color:blue;");
-    // }
-
-    if(moment().hour() == tr.dataset.hour) {
+    if(tr.dataset.hour == moment().hour()) {
         console.log("Testing: equal");
-         tr.tdInput.style.background = "black";
+         tdInput.style.background = "black";
     }
-    if( moment().hour() >= tr.dataset.hour) {
+    else if( tr.dataset.hour >= moment().hour() ) {
         console.log("Testing: Future");
-         tr.tdInput.setAttribute("style", "background-color:red;");
+         tdInput.setAttribute("style", "background-color:red;");
     }
     else {
         console.log("Testing: Past");
-        tr.tdInput.setAttribute("style", "background-color:blue;");
+        tdInput.setAttribute("style", "background-color:blue;");
     }
 
 }
 
 
-pointInTime();
+
+////////////////////////////////////
+// TESTING SAVING
+
+
+
+function saveEntry(event) {
+ 
+    
+    event.preventDefault();
+    var entry = event.target.parentNode.previousElementSibling.firstChild.value;
+    var time = //pulling from the dataset
+    //event.target.parentNode.parentNode.dataset
+
+    // Pushes each new initial and score to the end of the highScores array.
+    // tdInput.push(tdTextArea);
+
+    // Stores scores.
+    // localStorage.setItem("user_input", JSON.stringify(entry, time));
+    localStorage.setItem(time, entry)
+   
+ console.log(tdTextArea.textContent);
+ console.log(event.target.parentNode.previousElementSibling.firstChild.value);
+  };
+
+// Save scores function is executed on the click of this button.
+savingButton.addEventListener("click", saveEntry); 
+
+function showEntries() {
+
+    // Gets user inputs from local storage.
+    tdInput = JSON.parse(localStorage.getItem("user_input")) || [];
+    //whateverCodethattellsitwhichtextareatogoto.value(localStroage.getItem(time)) = 
+
+    // Loops through inputs in local storage, to get a count on how many exist.
+    for (var i = 0; i < tdInput.length; i++) {
+
+        tdInput.append(tdTextArea);
+   }
+}
+
+showEntries();
 
 
 
