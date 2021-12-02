@@ -20,17 +20,17 @@ beginTime();
 
 var container = document.getElementById("container");
 
-var tr = document.createElement('tr');
+// var tr = document.createElement('tr');
 
-var tdTime = document.createElement('td');
+// var tdTime = document.createElement('td');
 
-var tdInput = document.createElement('td');
+// var tdInput = document.createElement('td');
 
-var tdTextArea = document.createElement("textarea");
+// var tdTextArea = document.createElement("textarea");
 
-var tdButtonArea = document.createElement('td');
+// var tdButtonArea = document.createElement('td');
 
-var tdButton = document.createElement("button");
+// var tdButton = document.createElement("button");
 
 function getTime() {
 
@@ -40,39 +40,39 @@ function getTime() {
         
 
         // Row --------------------------
-        // let tr = document.createElement('tr');
+        let tr = document.createElement('tr');
         container.appendChild(tr);
         tr.setAttribute("data-hour", hour);
 
 
 
         // Time --------------------------
-        // let tdTime = document.createElement('td');
+        let tdTime = document.createElement('td');
         tr.appendChild(tdTime);
 
     
 
 
         // Converts time from Military to Standard.
-        // tdTime.textContent = moment().add(hour, 'hour').format('hh:00 a');
+        tdTime.textContent = moment().add(hour, 'hour').format('hh:00 a');
         tdTime.textContent = moment(hour, 'hour').format('hh:00 a');
 
 
 
         // Input --------------------------
-        // let tdInput = document.createElement('td');
+        let tdInput = document.createElement('td');
         tr.appendChild(tdInput);
        
 
-        // let tdTextArea = document.createElement("textarea");
+        let tdTextArea = document.createElement("textarea");
         tdInput.appendChild(tdTextArea);
 
 
         // Button --------------------------
-        // let tdButtonArea = document.createElement('td');
+        let tdButtonArea = document.createElement('td');
         tr.appendChild(tdButtonArea);
 
-        // let tdButton = document.createElement("button");
+        let tdButton = document.createElement("button");
         tdButtonArea.appendChild(tdButton);
         tdButton.textContent = "Submit"
 
@@ -125,9 +125,6 @@ function pointInTime() {
 }
 
 
-
-
-
 pointInTime();
 
 
@@ -147,7 +144,6 @@ if(moment().hour() > 10) {
 else {
     console.log("false");
 }
-
 
 // Formats the hour as standard time.
  console.log("Changing format: " + moment().format('hh:mm a'));
