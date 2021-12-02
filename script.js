@@ -21,60 +21,85 @@ beginTime();
 var container = document.getElementById("container");
 
 
-// var standardTime = moment().format('hh:mm a');
-// console.log("Standard Time :" + standardTime)
-
-// moment("HH").format('hh:mm a');
-
-// var hours = moment().hour();
-
-// var hours = [];
-
- 
 
 function getTime() {
 
   
     for (hour = 9; hour < 19; hour++) {
         
+        
 
         // Row --------------------------
-        var tr = document.createElement('tr');
+        let tr = document.createElement('tr');
         container.appendChild(tr);
 
 
 
         // Time --------------------------
-        var tdTime = document.createElement('td');
+        let tdTime = document.createElement('td');
         tr.appendChild(tdTime);
 
         // Set ID. Subtract 1 from hour to correct time difference.
-        tdTime.setAttribute("id", "hour" + (hour-1));
+        tdTime.setAttribute("id", "hour" + (hour));
+        tdTime.setAttribute("data-hour", hour);
 
 
         // Converts time from Military to Standard.
-        tdTime.textContent = moment().add(hour, 'hour').format('hh:00 a');
+        // tdTime.textContent = moment().add(hour, 'hour').format('hh:00 a');
+        tdTime.textContent = moment(hour, 'hour').format('hh:00 a');
 
 
 
         // Input --------------------------
-        var tdInput = document.createElement('td');
+        let tdInput = document.createElement('td');
         tr.appendChild(tdInput);
-        tdInput.setAttribute("style", "background-color: pink;");
-        tdInput.textContent = "text goes here";
+       
+
+        let tdTextArea = document.createElement("textarea");
+        tdInput.appendChild(tdTextArea);
 
 
         // Button --------------------------
-        var tdButton = document.createElement('td');
-        tr.appendChild(tdButton);
-        tdButton.textContent = "button goes here";
+        let tdButtonArea = document.createElement('td');
+        tr.appendChild(tdButtonArea);
+
+        let tdButton = document.createElement("button");
+        tdButtonArea.appendChild(tdButton);
+        tdButton.textContent = "Submit"
 
     }
- 
+}
+getTime();
+
+
+
+//////////////
+// Do I need to pull this into the loop? Or call the above function here?
+
+function pointInTime() {
+
+
+    if(moment().hour() === hour) {
+        console.log("Testing: equal");
+        //  tdInput.style.background = "black";
+    }
+    else if( moment().hour() >= hour ) {
+        console.log("Testing: Past");
+        //  tdInput.setAttribute("style", "background-color:red;");
+    }
+    else {
+        console.log("Testing: Future");
+        // tdInput.setAttribute("style", "background-color:#ffffff;");
+    }
 
 }
+console.log(moment().hour());
+console.log(hour);
 
-getTime();
+
+
+
+pointInTime();
 
 
 
