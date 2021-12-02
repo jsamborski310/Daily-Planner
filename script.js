@@ -32,6 +32,7 @@ function getTime() {
         // Row --------------------------
         let tr = document.createElement('tr');
         container.appendChild(tr);
+        tr.setAttribute("data-hour", hour);
 
 
 
@@ -39,9 +40,7 @@ function getTime() {
         let tdTime = document.createElement('td');
         tr.appendChild(tdTime);
 
-        // Set ID. Subtract 1 from hour to correct time difference.
-        tdTime.setAttribute("id", "hour" + (hour));
-        tdTime.setAttribute("data-hour", hour);
+    
 
 
         // Converts time from Military to Standard.
