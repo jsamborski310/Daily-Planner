@@ -69,9 +69,7 @@ function getTime() {
 
         tdTextArea = document.createElement("textarea");
         tdInput.appendChild(tdTextArea);
-        //if(localStorage data exists) {
-            //textContent = time
-        //}
+       
 
 
         // Button --------------------------
@@ -108,18 +106,8 @@ function getTime() {
 getTime();
 
 
-
 ///////////////////////////////////
-
-// Do I need to pull this into the loop? Or call the above function here?
-// Am I able to target tdInput or do something with bubbling or capturing since the data-attribute is in the row?
-// Does the data attribute need to be assigned to the button as well? 
-// More info on forEach.
-// Confirm I'll be storing tdTextArea in local storage.
-// Currently if statement only displays one option. If this, then not that. Need a styling for all three cases: Past, Present, Future. 
-// For save button, event listener for currentTarget?
-
-///////////////////////////////////
+// Applies background color depending on Past, Present, Future
 
 function pointInTime() {
 
@@ -142,7 +130,7 @@ function pointInTime() {
 
 
 ////////////////////////////////////
-// SAVING
+// Saving
 
 var entry;
 var time;
@@ -156,7 +144,7 @@ function saveEntry(event) {
     time = event.target.parentElement.parentElement.dataset.hour;
 
 
-    localStorage.setItem(time, entry)
+    localStorage.setItem(time, entry);
    
 
   };
@@ -167,28 +155,28 @@ $(savingButton).click(saveEntry);
 
 
 ///////////////////////////////////////
-// DISPLAYING
+// Displaying
 
 
 function showEntries() {
 
-    // Gets user inputs from local storage.
+        // Gets user inputs from local storage.
 
-    // plans = localStorage.getItem(time);
+        // plans = localStorage.getItem(time);
 
-     var plans = localStorage.getItem(entry);
+    //  var plans = localStorage.getItem(entry);
     
-         plans.appendChild(tdTextArea);
+        //  plans.appendChild(tdTextArea);
+        
+        // tdInput = JSON.parse(localStorage.getItem("user_input")) || [];
+        // time(localStorage.getItem(entry));
     
-     // tdInput = JSON.parse(localStorage.getItem("user_input")) || [];
-    // time(localStorage.getItem(entry));
-
-    // Loops through inputs in local storage, to get a count on how many exist.
-  
-
-    // time.append(tdTextArea);
+        // time.append(tdTextArea);
 
         // plans.appendChild(time, entry);
+
+        // var hour9 = localStorage.getItem("hour-9");
+        // // $("#hour-9").val(hour9);
    }
 
 showEntries();
