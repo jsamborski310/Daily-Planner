@@ -135,14 +135,16 @@ function getTime() {
 
    //////////
         //Add before tdTextArea appended?
+        // the key is the value, not the variable. 
+        //because the value of variable and time are the same (a number), it's pulling entry from setitem
    variable = hour.toString();
-   storedValue = localStorage.setItem(variable, time, entry);
+   storedValue = localStorage.getItem(variable);
 
-   if(storedValue !=null) {
 
-       tdTextArea.textContent = localStorage.getItem(variable); 
+    if(storedValue) {
+    tdTextArea.textContent = storedValue; 
 
-    }
+ }
 
 
        }
@@ -199,8 +201,11 @@ function saveEntry(event) {
 
     localStorage.setItem(time, entry);
    
+   
 
   };
+
+ 
 
   
 // $(savingButton).click(saveEntry);
