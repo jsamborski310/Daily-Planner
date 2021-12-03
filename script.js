@@ -89,6 +89,8 @@ function getTime() {
         //         }
         //     }
 
+
+
         // ////////
         tdInput.appendChild(tdTextArea);
        
@@ -134,16 +136,18 @@ function getTime() {
    //////////
         //Add before tdTextArea appended?
    variable = hour.toString();
-   storedValue = localStorage.getItem(variable);
+   storedValue = localStorage.setItem(variable, time, entry);
 
-   if(storedValue == null) {
-       console.log("null");// 
-   }
-   else {
-       tdTextArea.textContent = localStorage.setItem(time, entry); 
+   if(storedValue !=null) {
 
-           }
+       tdTextArea.textContent = localStorage.getItem(variable); 
+
+    }
+
+
        }
+
+
 
    ////////
 
@@ -193,7 +197,7 @@ function saveEntry(event) {
     time = event.currentTarget.parentElement.parentElement.dataset.hour;
 
 
-    // localStorage.setItem(time, entry);
+    localStorage.setItem(time, entry);
    
 
   };
