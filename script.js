@@ -17,9 +17,11 @@ beginTime();
 
 //////////////////////////
 
-var hour;
+
 
 var container = document.getElementById("container");
+
+var hour;
 
 var tr;
 
@@ -90,10 +92,10 @@ function getTime() {
         tdButtonArea = $('<td>');
         $(tr).append(tdButtonArea);
 
-        tdButton = `
-        <button><i class='far fa-save'></i></button>`;
+        tdButton = $('<button>');
+        $(tdButton).html("<i class='far fa-save'></i>");
 
-        $(tdButton).hasClass("savingButton");
+        $(tdButton).addClass("savingButton");
 
         $(tdButtonArea).append(tdButton);
 
@@ -148,8 +150,8 @@ function saveEntry(event) {
    
 
   };
-
-$(savingButton).click(saveEntry);
+  $(tdButton).click(saveEntry);
+// $(savingButton).click(saveEntry);
 // savingButton.addEventListener("click", saveEntry); 
 
 
@@ -164,7 +166,7 @@ function showEntries() {
 
         // plans = localStorage.getItem(time);
 
-    //  var plans = localStorage.getItem(entry);
+     localStorage.getItem(entry);
     
         //  plans.appendChild(tdTextArea);
         
