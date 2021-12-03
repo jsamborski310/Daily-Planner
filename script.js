@@ -75,16 +75,31 @@ function getTime() {
 
 
         // Button --------------------------
-        tdButtonArea = document.createElement('td');
-        tr.appendChild(tdButtonArea);
+        // tdButtonArea = document.createElement('td');
+        // tr.appendChild(tdButtonArea);
 
-        tdButton = document.createElement("button");
-        tdButtonArea.appendChild(tdButton);
-        tdButton.setAttribute("class", "savingButton");
+        // tdButton = document.createElement("button");
+
+        // tdButtonArea.appendChild(tdButton);
+        // tdButton.setAttribute("class", "savingButton");
         
-        savingButton = document.querySelector(".savingButton");
-        
-        tdButton.textContent = "Submit";
+        // tdButton.textContent = "<i class='far fa-save'>";
+
+        //  savingButton = document.querySelector(".savingButton");
+
+         //-------------------------//
+
+        tdButtonArea = $('<td>');
+        $(tr).append(tdButtonArea);
+
+        tdButton = `
+        <button><i class='far fa-save'></i></button>`;
+
+        $(tdButton).hasClass("savingButton");
+
+        $(tdButtonArea).append(tdButton);
+
+        savingButton = $('.savingButton');
 
         pointInTime();
 
@@ -127,44 +142,54 @@ function pointInTime() {
 
 
 ////////////////////////////////////
-// TESTING SAVING
+// SAVING
 
-
+var entry;
+var time;
 
 function saveEntry(event) {
  
-    
     event.preventDefault();
-    var entry = event.target.parentNode.previousElementSibling.firstChild.value;
-    var time = //pulling from the dataset
-    //event.target.parentNode.parentNode.dataset
 
-    // Pushes each new initial and score to the end of the highScores array.
-    // tdInput.push(tdTextArea);
+    entry = event.target.parentElement.previousElementSibling.firstChild.value;
 
-    // Stores scores.
-    // localStorage.setItem("user_input", JSON.stringify(entry, time));
+    time = event.target.parentElement.parentElement.dataset.hour;
+
+
     localStorage.setItem(time, entry)
    
- console.log(tdTextArea.textContent);
- console.log(event.target.parentNode.previousElementSibling.firstChild.value);
+
   };
 
-// Save scores function is executed on the click of this button.
-savingButton.addEventListener("click", saveEntry); 
+$(savingButton).click(saveEntry);
+// savingButton.addEventListener("click", saveEntry); 
+
+
+
+///////////////////////////////////////
+// DISPLAYING
+
 
 function showEntries() {
 
     // Gets user inputs from local storage.
-    tdInput = JSON.parse(localStorage.getItem("user_input")) || [];
-    //whateverCodethattellsitwhichtextareatogoto.value(localStroage.getItem(time)) = 
+
+    // plans = localStorage.getItem(time);
+
+     var plans = localStorage.getItem(entry);
+    
+         plans.appendChild(tdTextArea);
+    
+     // tdInput = JSON.parse(localStorage.getItem("user_input")) || [];
+    // time(localStorage.getItem(entry));
 
     // Loops through inputs in local storage, to get a count on how many exist.
-    for (var i = 0; i < tdInput.length; i++) {
+  
 
-        tdInput.append(tdTextArea);
+    // time.append(tdTextArea);
+
+        // plans.appendChild(time, entry);
    }
-}
 
 showEntries();
 
@@ -173,21 +198,28 @@ showEntries();
 /////////////////////////////////////////////////////////
 // TESTING
 
-// Gives the current hour. Military time.
-console.log("Moment / Number:" + moment().hour());
-console.log(moment().hour());
-console.log(hour);
+//  console.log(tdTextArea.textContent);
+//  console.log(event.target.parentNode.previousElementSibling.firstChild.value);
 
-// Reads the hour as a number. 
-if(moment().hour() > 10) {
-    console.log("true");
-}
-else {
-    console.log("false");
-}
+ // Gets Text Area Text
+//  console.log(event.target.parentElement.previousElementSibling.firstChild.value);
+//  console.log(event.target.parentElement.parentElement.dataset.hour);
 
-// Formats the hour as standard time.
- console.log("Changing format: " + moment().format('hh:mm a'));
+// // Gives the current hour. Military time.
+// console.log("Moment / Number:" + moment().hour());
+// console.log(moment().hour());
+// console.log(hour);
+
+// // Reads the hour as a number. 
+// if(moment().hour() > 10) {
+//     console.log("true");
+// }
+// else {
+//     console.log("false");
+// }
+
+// // Formats the hour as standard time.
+//  console.log("Changing format: " + moment().format('hh:mm a'));
 
 
 
