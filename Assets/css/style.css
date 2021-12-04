@@ -83,7 +83,8 @@ button {
 }
 
 button:focus-visible,
-button:not(:disabled) {
+button:not(:disabled),
+button:focus {
   outline:none;
 }
 
