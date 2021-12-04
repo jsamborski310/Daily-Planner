@@ -1,89 +1,85 @@
-# 05 Third-Party APIs: Work Day Scheduler
+# Daily-Planner
 
-## Your Task
+## Overview
 
-Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
-
-You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
-
-## User Story
-
-```md
-AS AN employee with a busy schedule
-I WANT to add important events to a daily planner
-SO THAT I can manage my time effectively
-```
-
-## Acceptance Criteria
-
-```md
-GIVEN I am using a daily planner to create a schedule
-WHEN I open the planner
-THEN the current day is displayed at the top of the calendar
-WHEN I scroll down
-THEN I am presented with timeblocks for standard business hours
-WHEN I view the timeblocks for that day
-THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-WHEN I click into a timeblock
-THEN I can enter an event
-WHEN I click the save button for that timeblock
-THEN the text for that event is saved in local storage
-WHEN I refresh the page
-THEN the saved events persist
-```
-
-The following animation demonstrates the application functionality:
-
-![A user clicks on slots on the color-coded calendar and edits the events.](./Assets/05-third-party-apis-homework-demo.gif)
+Program a daily planner that an employee with a busy schedule can use to organize their work day, and thus manage their time more effectively.  
 
 
-## Grading Requirements
+## The Project
 
-This homework is graded based on the following criteria: 
+The daily planner was built using HTML, CSS, javascript, jQuery and moment.js, and is accessibile via the browser. 
 
-### Technical Acceptance Criteria: 40%
+When the employee accesses the daily planner, they are able to view the current date and time, and a table containing each work hour (9am - 6pm), a text area to enter the event, and a button to save the event. 
 
-* Satisfies all of the above acceptance criteria plus the following:
+Upon clicking the button, the event entered for the specific time, is saved to local storage. Employee is able to continue to view the event for the specific time slot even after they refresh the page. 
 
-  * Uses a date utility library to work with date and time
+Additionally, time slots have varying shades of a color, helping the employee easily determine at a glance hours that are in the past, present, and in the future.  
 
-### Deployment: 32%
 
-* Application deployed at live URL
 
-* Application loads with no errors
+## Road Blocks
 
-* Application GitHub URL submitted
+Before beginning the project, I began thinking through the requirements and writing out pseudocode. Based on my current understanding of javascript, there were a few things I knew I needed to include in the application's code: moment.js to display the time and format the hour, local storage, if/else statements. The table, time, text area, and buttons could be created in the HTML, but I opted to create the elements dynamicall. 
 
-* GitHub repo contains application code
+Seemed simple enough, but there were a few bumps in the road: 
 
-### Application Quality: 15%
+- How do I save each entry to its specific time block based on the click of its corresponding button, without listing each individual time block?
+- How do I create a button element with an icon?
 
-* Application user experience is intuitive and easy to navigate
 
-* Application user interface style is clean and polished
+###### Storing Entries 
 
-* Application resembles the mock-up functionality provided in the homework instructions
+There seemed to be several different ways to solve this issue. Many, however, involved several lines of code. By placing the following code within the loop, I was able to save and display each entry to its specific row. In simple terms, if there was text in a textarea, the application gets it from storage and displays it as `textContent`. 
 
-### Repository Quality: 13%
+    ```
+        variable = hour.toString();
 
-* Repository has a unique name
+        storedValue = localStorage.getItem(variable);
 
-* Repository follows best practices for file structure and naming conventions
+        if(storedValue) {
+        tdTextArea.textContent = storedValue; 
+        }
+    ```
 
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+In working out the solution to this problem, I learned that localStorage can only store strings. The hour was not a string, but I was able to convert it into one using the `toString()` method. 
 
-* Repository contains multiple descriptive commit messages
+###### Button Icon
 
-* Repository contains quality README file with description, screenshot, and link to deployed application
+This nifty piece of jQuery code allowed me to add an icon to the dynamically created button. 
 
-## Review
+    ```
+        tdButton = $('<button>');
+        $(tdButton).html("<i class='far fa-save'></i>");
+    ```
 
-You are required to submit the following for review:
+## That's a wrap
 
-* The URL of the deployed application
+After some trial and error, office hours attendance, Googling, tutoring and studying, the code locked into place and the application operates as per the requirements.  
 
-* The URL of the GitHub repository, with a unique name and a README describing the project
 
-- - -
-© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+## Take a Look
+
+GitHub: https://github.com/jsamborski310/Daily-Planner
+
+GitHub Pages: https://jsamborski310.github.io/Daily-Planner/
+
+
+## The Preview
+
+Here's a live screencast of the daily planner in action: 
+
+https://www.loom.com/share/dd88f8fd3a0d42ce8f6662433dbc6e04
+
+
+###### Daily Planner
+
+
+![Screen shot of the daily planner.](assets/images/Daily-Planner.png)
+
+
+###### Daily Planner with Plans
+
+
+![Screen shot of the daily planner with plans.](assets/images/Daily-Planner-With-Plans.png)
+
+

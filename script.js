@@ -1,8 +1,14 @@
+//////////////////////////////
+// Variables
+
+// Getting Elements ---------
 var table = document.getElementById("table");
 
+
+// Hour ---------
 var hour;
 
-
+// Creating the Form and Buttons ---------
 var tr;
 var tdTime;
 var tdInput;
@@ -11,14 +17,14 @@ var tdButtonArea;
 var tdButton;
 var savingButton;
 
+// Storing  ---------
 var variable;
 var storedValue;
-
 var entry;
 var time;
 
 //////////////////////////////
-// Displays Current Day.
+// Displays Current Day in Jumbotron.
 
 function beginTime() {
 
@@ -42,18 +48,18 @@ function getTime() {
         
        
 
-        // Row --------------------------
+    // Row --------------------------
         tr = document.createElement('tr');
         table.appendChild(tr);
         tr.setAttribute("data-hour", hour);
 
       
 
-        // Time --------------------------
+    // Time --------------------------
         tdTime = document.createElement('td');
         tr.appendChild(tdTime);
         
-        // Converts time from Military to Standard.
+    // Converts time from Military to Standard.
         tdTime.textContent = moment(hour, 'hour').format('hh:00 a');
 
         tdTime.setAttribute("class", "timeOfDay");
@@ -69,8 +75,6 @@ function getTime() {
         tdInput.appendChild(tdTextArea);
 
        
-       
-
 
     // Button --------------------------
 
@@ -88,21 +92,23 @@ function getTime() {
 
         
     // Event Listener
-
+        // Placing it within the loop, ties it to the specific row.
          $(tdButton).click(saveEntry);
 
       
-    // Past, Present, Future --------------------------
-
+    // Calling Past, Present, Future Function --------------------------
+        // Placing within the loop, reads the time for each row.
         pointInTime();
 
   
     // Displays Stored Entries --------------------------
-
+        // Stringified hour to be read by local storage. 
         variable = hour.toString();
+
+        // Getting stored entries to display.
         storedValue = localStorage.getItem(variable);
 
-
+        // If user enters text, it's saved to the corresponding row. 
         if(storedValue) {
         tdTextArea.textContent = storedValue; 
         }
@@ -115,7 +121,7 @@ getTime();
 
 
 ///////////////////////////////////
-// Applies background color depending on Past, Present, Future
+// Applies background color depending on Past, Present, Future.
 
 function pointInTime() {
 
@@ -138,21 +144,18 @@ function pointInTime() {
 }
 
 
-
 ////////////////////////////////////
-// Saving
+// Saving to local storage.
 
 
 function saveEntry(event) {
  
     event.preventDefault();
 
-    console.log('target', event.currentTarget);
-
+    // Targeting the text input.
     entry = event.currentTarget.parentElement.previousElementSibling.firstChild.value;
 
     time = event.currentTarget.parentElement.parentElement.dataset.hour;
-
 
     localStorage.setItem(time, entry);
    
