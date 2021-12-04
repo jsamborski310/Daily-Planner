@@ -1,6 +1,7 @@
-var container = document.getElementById("container");
+var table = document.getElementById("table");
 
 var hour;
+
 
 var tr;
 var tdTime;
@@ -43,7 +44,7 @@ function getTime() {
 
         // Row --------------------------
         tr = document.createElement('tr');
-        container.appendChild(tr);
+        table.appendChild(tr);
         tr.setAttribute("data-hour", hour);
 
       
@@ -51,12 +52,11 @@ function getTime() {
         // Time --------------------------
         tdTime = document.createElement('td');
         tr.appendChild(tdTime);
-
-       
-
+        
         // Converts time from Military to Standard.
         tdTime.textContent = moment(hour, 'hour').format('hh:00 a');
 
+        tdTime.setAttribute("class", "timeOfDay");
        
 
     // Input --------------------------
@@ -122,16 +122,16 @@ function pointInTime() {
 
     if(tr.dataset.hour == moment().hour()) {
         console.log("Testing: equal");
-        tdInput.setAttribute("class", "present");;
+        tdInput.setAttribute("class", "present tdInput");;
          
     }
     else if(tr.dataset.hour >= moment().hour() ) {
         console.log("Testing: Future");
-         tdInput.setAttribute("class", "future");
+         tdInput.setAttribute("class", "future tdInput");
     }
     else {
         console.log("Testing: Past");
-        tdInput.setAttribute("class", "past");
+        tdInput.setAttribute("class", "past tdInput");
         
     }
 

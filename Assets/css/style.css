@@ -1,7 +1,16 @@
+* {
+  padding:0;
+  margin:0;
+}
+
+:root {
+  --salmon: #FA8072;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 textarea {
@@ -9,51 +18,75 @@ textarea {
   border: none;
   resize: none;
   color: #000000;
-  border-left: 1px solid black;
   padding: 10px;
+  width:100%;
+}
+textarea:focus-visible {
+  outline:none;
 }
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
-  color: black;
+  background-color: black;
+  color: white;
   border-radius: 0;
-  border-bottom: 10px solid black;
+  border-bottom: 10px solid var(--salmon);
 }
 
-.description {
+.tableContainer {
+  padding: 20px;
+}
+
+table {
+  margin-left: auto;
+  margin-right:auto;
+}
+
+
+.tdInput {
+  width: 80%;
+}
+
+.timeOfDay {
+  padding-right: 10px;
+}
+
+
+
+/* .description {
   white-space: pre-wrap;
-}
+} */
 
-.time-block {
+/* .time-block {
   text-align: center;
   border-radius: 15px;
-}
+} */
 
-.row {
+/* .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
-}
+} */
 
-.hour {
+/* .hour {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
-}
+} */
 
 .past {
-  background-color: #d3d3d3;
+  background-color: #FA807270;
   color: white;
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #FA807250;
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #FA807230;
+  border: 2px solid white;
   color: white;
 }
 
@@ -72,7 +105,19 @@ textarea {
 
 /* ---------------*/
 button {
-  background-color:black;
-  padding: 50px;
+  background-color:transparent;
+  border: none;
   color:white;
+}
+
+.far {
+  font-size: 25px;
+  background-color: var(--salmon);
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  margin: 10px 0 10px 10px;
+}
+.far:hover {
+  background-color: #FA807280;
 }
