@@ -27,9 +27,12 @@ Seemed simple enough, but there were a few bumps in the road:
 - How do I create a button element with an icon?
 
 
+
 ###### Storing Entries 
 
 There seemed to be several different ways to solve this issue. Many, however, involved several lines of code. By placing the following code within the loop, I was able to save and display each entry to its specific row. In simple terms, if there was text in a textarea, the application gets it from storage and displays it as `textContent`. 
+
+In working out the solution to this problem, I learned that localStorage can only store strings. The hour was not a string, but I was able to convert it into one using the `toString()` method.
 
     ```
         variable = hour.toString();
@@ -41,7 +44,7 @@ There seemed to be several different ways to solve this issue. Many, however, in
         }
     ```
 
-In working out the solution to this problem, I learned that localStorage can only store strings. The hour was not a string, but I was able to convert it into one using the `toString()` method. 
+
 
 ###### Button Icon
 
@@ -74,12 +77,10 @@ https://www.loom.com/share/dd88f8fd3a0d42ce8f6662433dbc6e04
 ###### Daily Planner
 
 
-![Screen shot of the daily planner.](assets/images/Daily-Planner.png)
+![Screen shot of the daily planner.](Assets/images/Daily-Planner.png)
 
 
 ###### Daily Planner with Plans
 
 
-![Screen shot of the daily planner with plans.](assets/images/Daily-Planner-With-Plans.png)
-
-
+![Screen shot of the daily planner with plans.](Assets/images/Daily-Planner-With-Plans.png)
