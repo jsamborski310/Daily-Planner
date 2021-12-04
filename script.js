@@ -1,4 +1,20 @@
+var container = document.getElementById("container");
 
+var hour;
+
+var tr;
+var tdTime;
+var tdInput;
+var tdTextArea;
+var tdButtonArea;
+var tdButton;
+var savingButton;
+
+var variable;
+var storedValue;
+
+var entry;
+var time;
 
 //////////////////////////////
 // Displays Current Day.
@@ -15,31 +31,8 @@ function beginTime() {
 beginTime();
 
 
-//////////////////////////
-
-
-
-var container = document.getElementById("container");
-
-var hour;
-
-var tr;
-
-var tdTime;
-
-var tdInput;
-
-var tdTextArea;
-
-var tdButtonArea;
-
-var tdButton;
-
-var savingButton;
-
-var variable;
-
-var storedValue;
+//////////////////////////////
+// Gets time.
 
 function getTime() {
 
@@ -53,67 +46,33 @@ function getTime() {
         container.appendChild(tr);
         tr.setAttribute("data-hour", hour);
 
-
+      
 
         // Time --------------------------
         tdTime = document.createElement('td');
         tr.appendChild(tdTime);
 
-    
-
+       
 
         // Converts time from Military to Standard.
-        tdTime.textContent = moment().add(hour, 'hour').format('hh:00 a');
         tdTime.textContent = moment(hour, 'hour').format('hh:00 a');
 
+       
 
+    // Input --------------------------
 
-        // Input --------------------------
         tdInput = document.createElement('td');
         tr.appendChild(tdInput);
        
         tdTextArea = document.createElement("textarea");
         
-
-        // //////////
-
-        // variable = hour.toString();
-        // storedValue = localStorage.getItem(variable);
-
-        // if(storedValue == null) {
-        //     console.log("null");// tdTextArea.textContent = "";
-        // }
-        // else {
-        //     tdTextArea.textContent = localStorage.setItem(time, entry); 
-
-        //         }
-        //     }
-
-
-
-        // ////////
         tdInput.appendChild(tdTextArea);
+
+       
        
 
 
-
-
-
-        // Button --------------------------
-        // tdButtonArea = document.createElement('td');
-        // tr.appendChild(tdButtonArea);
-
-        // tdButton = document.createElement("button");
-
-        // tdButtonArea.appendChild(tdButton);
-        // tdButton.setAttribute("class", "savingButton");
-        
-        // tdButton.textContent = "<i class='far fa-save'>";
-
-        //  savingButton = document.querySelector(".savingButton");
-
-         //-------------------------//
-
+    // Button --------------------------
 
         tdButtonArea = $('<td>');
         $(tr).append(tdButtonArea);
@@ -123,38 +82,34 @@ function getTime() {
 
         $(tdButton).addClass("savingButton");
 
-        //move this between saving Button and point in time.
-        $(tdButton).click(saveEntry);
-
         $(tdButtonArea).append(tdButton);
 
         savingButton = $('.savingButton');
 
+        
+    // Event Listener
+
+         $(tdButton).click(saveEntry);
+
       
+    // Past, Present, Future --------------------------
+
         pointInTime();
 
-   //////////
-        //Add before tdTextArea appended?
-        // the key is the value, not the variable. 
-        //because the value of variable and time are the same (a number), it's pulling entry from setitem
-   variable = hour.toString();
-   storedValue = localStorage.getItem(variable);
+  
+    // Displays Stored Entries --------------------------
+
+        variable = hour.toString();
+        storedValue = localStorage.getItem(variable);
 
 
-    if(storedValue) {
-    tdTextArea.textContent = storedValue; 
+        if(storedValue) {
+        tdTextArea.textContent = storedValue; 
+        }
 
- }
+    }
 
-
-       }
-
-
-
-   ////////
-
-
-    } 
+} 
 
 getTime();
 
@@ -167,15 +122,17 @@ function pointInTime() {
 
     if(tr.dataset.hour == moment().hour()) {
         console.log("Testing: equal");
-         tdInput.style.background = "black";
+        tdInput.setAttribute("class", "present");;
+         
     }
     else if(tr.dataset.hour >= moment().hour() ) {
         console.log("Testing: Future");
-         tdInput.setAttribute("style", "background-color:red;");
+         tdInput.setAttribute("class", "future");
     }
     else {
         console.log("Testing: Past");
-        tdInput.setAttribute("style", "background-color:blue;");
+        tdInput.setAttribute("class", "past");
+        
     }
 
 }
@@ -185,8 +142,6 @@ function pointInTime() {
 ////////////////////////////////////
 // Saving
 
-var entry;
-var time;
 
 function saveEntry(event) {
  
@@ -201,84 +156,6 @@ function saveEntry(event) {
 
     localStorage.setItem(time, entry);
    
-   
 
   };
 
- 
-
-  
-// $(savingButton).click(saveEntry);
-// savingButton.addEventListener("click", saveEntry); 
-
-
-
-///////////////////////////////////////
-// Displaying
-
-//Goes through the local storage
-// Create a for loop that goes from index 9 to 18, convert inside the for loop. Convert the index into a string. Use the string to get the item. 
-
-
-
-// function showEntries() {
-
-//         // Gets user inputs from local storage.
-
-//         // plans = localStorage.getItem(time);
-
-//      localStorage.getItem(entry);
-    
-//         //  plans.appendChild(tdTextArea);
-        
-//         // tdInput = JSON.parse(localStorage.getItem("user_input")) || [];
-//         // time(localStorage.getItem(entry));
-    
-//         // time.append(tdTextArea);
-
-//         // plans.appendChild(time, entry);
-
-//         // var hour9 = localStorage.getItem("hour-9");
-//         // // $("#hour-9").val(hour9);
-//    }
-
-// showEntries();
-
-
-
-/////////////////////////////////////////////////////////
-// TESTING
-
-
-////---------------
-        // Variable is the key. The key always has to be a string. 
-        // 1. convert hour to a string and store that value. Template literal? hour.toString();
-        // 2. use that string to get the item from local storage. 
-        // 3. if the local storage item is null then do nothing. 
-        // 4. if the local storage item is not null, then set the html of tdTextArea to the local storage item. 
-
-////---------------
-
-//  console.log(tdTextArea.textContent);
-//  console.log(event.target.parentNode.previousElementSibling.firstChild.value);
-
- // Gets Text Area Text
-//  console.log(event.target.parentElement.previousElementSibling.firstChild.value);
-//  console.log(event.target.parentElement.parentElement.dataset.hour);
-
-////---------------
-// // Gives the current hour. Military time.
-// console.log("Moment / Number:" + moment().hour());
-// console.log(moment().hour());
-// console.log(hour);
-
-// // Reads the hour as a number. 
-// if(moment().hour() > 10) {
-//     console.log("true");
-// }
-// else {
-//     console.log("false");
-// }
-
-// // Formats the hour as standard time.
-//  console.log("Changing format: " + moment().format('hh:mm a'));
