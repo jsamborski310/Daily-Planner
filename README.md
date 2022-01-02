@@ -1,4 +1,5 @@
 # Daily-Planner
+Application to add tasks and/or events for the day. 
 
 ## Overview
 
